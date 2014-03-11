@@ -1,0 +1,107 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+    <title>API Tester</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="bower_components/angular-loading-bar/build/loading-bar.min.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body ng-controller="MainCtrl">
+    <div class="container">
+        <h1>API Tester</h1>
+        <form ng-submit="submit()">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle">{{ selected }} <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="method in methods">
+                                <a href="#" ng-click="update(method)">{{ method }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <input type="text" class="form-control" ng-model="url" placeholder="url">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-play"></i> Run</button>
+                    </span>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <div ng-show="selected == 'POST'">
+            <h3>{{ selected }} data</h3>
+            <div class="row">
+                <form ng-submit="construct()">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                                <input type="text" ng-model="key" class="form-control" placeholder="key">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
+                                <input type="text" ng-model="value" class="form-control" placeholder="value">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-plus"></i> Add</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="col-sm-6">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Key</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="(key, value) in post" ng-show="isEmpty(post)">
+                                    <td>{{ key }}</td>
+                                    <td>
+                                        {{ value }}
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-default btn-xs" ng-click="edit(key, value)"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-default btn-xs" ng-click="clear(key)"><i class="fa fa-trash-o"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="warning" ng-hide="isEmpty(post)">
+                                    <td colspan="3">
+                                        No data has been set...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr ng-show="selected == 'POST'">
+        <p class="lead" ng-show="url"><code ng-show="selected">{{ selected }}</code> {{ url }}<strong>{{ resource }}</strong></p>
+        <div class="content">
+            <pre>{{ data }}</pre>
+            <div class="label" ng-class="class" ng-show="status"><i class="fa" ng-class="icon"></i> {{ status }}</div>
+        </div>
+    </div>
+</body>
+</html>

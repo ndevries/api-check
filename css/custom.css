@@ -1,0 +1,32 @@
+* {
+    cursor: default;
+}
+
+a, button, .label, button i, .label i, a i {
+    cursor: pointer;
+}
+
+input {
+    cursor: text;
+}
+
+.content {
+    position: relative;
+}
+
+.content .label {
+    position: absolute;
+    font-size: 90%;
+    right: 10px;
+    top: 10px;
+}
+
+.content pre {
+    overflow: auto;
+    word-wrap: normal;
+    white-space: pre;
+}
+
+.btn, pre, .dropdown-menu, code, .label, .form-control, .input-group-addon {
+    border-radius: 0;
+}

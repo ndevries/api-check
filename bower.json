@@ -1,0 +1,25 @@
+{
+  "name": "api-check",
+  "version": "0.0.0",
+  "authors": [
+    "Nicholas DeVries <nicholas@thirtyfive.io>"
+  ],
+  "description": "Tool for testing API based frameworks",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "font-awesome": "~4.0.3",
+    "angular": "~1.2.14",
+    "angular-loading-bar": "~0.3.0",
+    "angular-bootstrap": "~0.10.0",
+    "bootstrap": "~3.1.1"
+  }
+}
