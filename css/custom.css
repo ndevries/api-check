@@ -2,7 +2,7 @@
     cursor: default;
 }
 
-a, button, .label, button i, .label i, a i {
+a, button, button i, a i {
     cursor: pointer;
 }
 
