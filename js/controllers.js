@@ -9,7 +9,7 @@ angular.module('app.controllers', [])
         'DELETE'
     ];
     $scope.selected = $scope.methods[0];
-    $scope.url = 'http://localhost:8080/api/v1/';
+    $scope.url = 'http://localhost:8080/';
 
     $scope.data = 'Response object here...'
     $scope.post = {};
